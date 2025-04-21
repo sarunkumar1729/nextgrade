@@ -1,44 +1,40 @@
-function animateCounter(id, end, suffix = '', duration = 2000) {
-      const el = document.getElementById(id);
-      if (el.dataset.animated === "true") return;
-      el.dataset.animated = "true";
-    
-      let start = 0;
-      const increment = end / (duration / 20);
-    
-      const update = () => {
-        start += increment;
-        if (start < end) {
-          el.textContent = Math.floor(start) + suffix;
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = end + suffix;
-        }
-      };
-      update();
+const counters = [
+  { id: "universities", value: 50, suffix: "+" },
+  { id: "courses", value: 200, suffix: "+" },
+  { id: "admissions", value: 1500, suffix: "+" },
+  { id: "satisfaction", value: 99, suffix: "%" }
+];
+
+let started = false;
+
+function animateCounter(id, target, suffix = "", duration = 2000) {
+  const el = document.getElementById(id);
+  let start = 0;
+  const stepTime = 20;
+  const increment = target / (duration / stepTime);
+
+  const interval = setInterval(() => {
+    start += increment;
+    if (start >= target) {
+      el.textContent = target + suffix;
+      clearInterval(interval);
+    } else {
+      el.textContent = Math.floor(start) + suffix;
     }
-    
-    function isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom > 0;
-    }
-    
-    function checkAndAnimateCounters() {
-      const counters = [
-        { id: 'universities', end: 100, suffix: '+' },
-        { id: 'courses', end: 200, suffix: '+' },
-        { id: 'admissions', end: 1500, suffix: '+' },
-        { id: 'satisfaction', end: 99, suffix: '%' }
-      ];
-    
-      counters.forEach(counter => {
-        const el = document.getElementById(counter.id);
-        if (isInViewport(el)) {
-          animateCounter(counter.id, counter.end, counter.suffix);
-        }
-      });
-    }
-    
-    window.addEventListener('scroll', checkAndAnimateCounters);
-    window.addEventListener('load', checkAndAnimateCounters);
-    
+  }, stepTime);
+}
+
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+window.addEventListener("scroll", () => {
+  const container = document.querySelector(".counter-container");
+  if (!started && isInViewport(container)) {
+    counters.forEach(counter => {
+      animateCounter(counter.id, counter.value, counter.suffix);
+    });
+    started = true;
+  }
+});
