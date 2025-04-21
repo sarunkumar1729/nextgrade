@@ -1,0 +1,46 @@
+/* Container that centers buttons vertically on the right */
+.floating-container {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+    
+    /* Button styles */
+    .floating-btn {
+      width: 50px;
+      height: 50px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      font-size: 22px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    
+    /* Individual colors */
+    .whatsapp {
+      background-color: #25D366;
+    }
+    .call {
+      background-color: #0A66C2;
+    }
+    
+    /* Hover effects */
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+    .whatsapp:hover {
+      background-color: #128C7E;
+    }
+    .call:hover {
+      background-color: #004182;
+    }
+    
