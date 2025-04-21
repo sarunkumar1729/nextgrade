@@ -1,0 +1,43 @@
+.counter-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 40px;
+      background-color: #f0f4f8;
+    }
+    
+    .counter-block {
+      background: linear-gradient(
+        135deg,
+        rgba(0, 123, 255, 0.4),
+        rgba(0, 200, 255, 0.4)
+      );
+      backdrop-filter: blur(10px);
+      padding: 30px 20px;
+      border-radius: 20px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .counter-block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .counter-block h2 {
+      font-size: 3rem;
+      color: #fff;
+      margin: 0;
+    }
+    
+    .counter-block p {
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+    
