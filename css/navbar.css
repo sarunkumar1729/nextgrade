@@ -141,3 +141,8 @@ nav ul li a:hover {
     display: none;
   }
 }
+
+
+.nav-btn{
+  font-size: 15px;
+}
